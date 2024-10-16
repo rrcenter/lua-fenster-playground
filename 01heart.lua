@@ -1,8 +1,8 @@
 local fenster = require('fenster')
 
-local width = 500
-local height = 500
-local window_scale = 1
+local width = 144
+local height = 144
+local window_scale = 4
 local fps = 30
 
 local window = fenster.open(width, height, 'Hello fenster!', window_scale, fps)
