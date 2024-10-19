@@ -1,3 +1,8 @@
+
+-- load mac share dylib
+package.cpath = package.cpath .. ';./lib?.dylib;'
+print(package.cpath)
+
 local fenster = require('fenster')
 
 local width = 144

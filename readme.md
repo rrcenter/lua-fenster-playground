@@ -11,6 +11,13 @@ play with key '1/2/3'
 .\luajit.exe .\01heart.lua
 ```
 
+## macOS
+
+```shell
+./luajit 01heart.lua
+./luajit 02light.lua
+```
+
 ![](shows/01heart01.png)
 ![](shows/01heart02.png)
 ![](shows/01heart03.png)
