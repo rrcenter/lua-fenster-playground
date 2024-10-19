@@ -157,6 +157,9 @@ local function draw_heart3d_animate(t)
     end
 end
 
+local function ispress(keyChar)
+    return window.keys[string.byte(keyChar)]
+end
 
 local draw_menu = {
     [1] = draw_heart,
@@ -170,13 +173,13 @@ local t = 0
 while window:loop() and not window.keys[27] do
     window:clear()
 
-    if window.keys[string.byte('1')] then
+    if ispress('1') then
         draw_type = 1
-    elseif window.keys[string.byte('2')] then
+    elseif ispress('2') then
         draw_type = 2
-    elseif window.keys[string.byte('3')] then
+    elseif ispress('3') then
         draw_type = 3
-    elseif window.keys[string.byte('4')] then
+    elseif ispress('4') then
         t = 0
         draw_type = 4
     end
