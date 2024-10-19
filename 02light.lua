@@ -69,18 +69,21 @@ local sdfType = 1
 local sdf = function (x,y )
     local sd
     if sdfType == 1 then
-        sd = circleSDF(x, y, 0.5, 0.5, 0.1)
+        sd = circleSDF(x, y, 0.5, 0.5, 0.05)
     elseif sdfType == 2 then
         sd = planeSDF(x, y, 0.5, 0.5, 0.0, 1.0)
     elseif sdfType == 3 then
         sd = boxSDF(x, y, 0.5, 0.5, TWO_PI/16.0, 0.3, 0.1)
     elseif sdfType == 4 then
         sd = triangleSDF(x, y, 0.5, 0.2, 0.8, 0.8, 0.3, 0.6)
+    elseif sdfType == 5 then
+        sd = capsuleSDF(x, y, 0.4, 0.4, 0.6, 0.6, 0.1)
     else
         sd = circleSDF(x, y, 0.5, 0.5, 0.1)
     end
     return sd
 end
+
 -- Ray marching function
 local function trace(ox, oy, dx, dy)
     local t = 0.0
@@ -124,18 +127,22 @@ end
 
 local keys = require('keys')
 local function main()
-    local window = fenster.open(width, height, 'Light 2D!', window_scale, fps)
-    while window:loop() and not window.keys[27] do
+    local window = fenster.open(width, height, 'Light 2D! 1/2/3/4/5', window_scale, fps)
+    local function ispress(key)
+        return window.keys[keys[tostring(key)]]
+    end
+
+    while window:loop() and not ispress('escape') do
         window:clear()
 
-        for _, value in ipairs({1,2,3,4}) do
-            if window.keys[keys[tostring(value)]] then
+        for _, value in ipairs({1,2,3,4,5}) do
+            if ispress(value) then
                 sdfType = value
                 break
             end
         end
 
-        draw(window)
+         draw(window)
     end
 end
 
